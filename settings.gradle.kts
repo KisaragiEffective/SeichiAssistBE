@@ -1,2 +1,2 @@
-rootProject.name = "MyFirstNukkitPlugin"
+rootProject.name = "SeichiAssistBE"
 
