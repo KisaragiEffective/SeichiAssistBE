@@ -1,5 +1,6 @@
 import java.net.URI
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     java
@@ -19,9 +20,28 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
 }
 
+val kotlinCompilerArgument = listOf("-Xjsr305=strict")
+
 tasks {
     withType<KotlinCompile>().configureEach {
         kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.freeCompilerArgs = kotlinCompilerArgument
+    }
+
+    withType<ProcessResources> {
+        filteringCharset = "UTF-8"
+        from(sourceSets.main.get().resources.srcDirs) {
+            include("**")
+
+            val tokenReplacementMap = mapOf(
+                "version" to project.version,
+                "name" to project.rootProject.name
+            )
+
+            filter<ReplaceTokens>("tokens" to tokenReplacementMap)
+        }
+
+        from(projectDir) { include("LICENSE") }
     }
 
     withType<Jar> {
