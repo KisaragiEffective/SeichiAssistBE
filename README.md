@@ -11,3 +11,8 @@ The server to test is running on `play.seichi.click:19132`.
 
 ## License
 [GPL_v3](LICENSE)
+
+## AutoRelease
+developブランチにマージすると自動でplay.seichi.click:19132に反映&再起動されます。<br>
+CircleCIの適用範囲はjar作成→リリース用ディレクトリ配置までです。<br>
+稼働環境への反映と再起動はインフラ側で別途スクリプト組んでいます。（本リポジトリの管理対象外）
