@@ -10,7 +10,10 @@ import cn.nukkit.form.window.FormWindowSimple
 class WindowWithCallback(
         private val title: String, // due to Nukkit
         private val content: String, // due to Nukkit
-        buttonsWithCallback: List<Pair<ElementButton, (PlayerFormRespondedEvent) -> Unit>>) : FormWindow() {
+        vararg buttonsWithCallback: Pair<ElementButton, (PlayerFormRespondedEvent) -> Unit>) : FormWindow() {
+
+    constructor(title: String, content: String, buttonsWithCallback: List<Pair<ElementButton, (PlayerFormRespondedEvent) -> Unit>>) : this(title, content, *buttonsWithCallback.toTypedArray())
+
     private val simpleWindow = FormWindowSimple(title, content).apply {
         buttonsWithCallback.forEach { (button, _) -> addButton(button) }
     }
