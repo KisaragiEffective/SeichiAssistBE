@@ -2,11 +2,13 @@ package com.github.unchama.seichiassistbe.listener
 
 import cn.nukkit.event.EventHandler
 import cn.nukkit.event.Listener
+import cn.nukkit.event.player.PlayerFormRespondedEvent
 import cn.nukkit.event.player.PlayerInteractEvent
-import cn.nukkit.form.window.FormWindowSimple
+import cn.nukkit.form.element.ElementButton
 import cn.nukkit.item.Item
-import com.github.unchama.seichiassistbe.util.ButtonWithCallback
+import com.github.unchama.seichiassistbe.util.WindowWithCallback
 
+@Suppress("unused")
 object DebugListener : Listener {
 
     @EventHandler
@@ -18,10 +20,12 @@ object DebugListener : Listener {
                 || event.item?.id != Item.STICK) return
 
         event.player.showFormWindow(
-                FormWindowSimple(
+                WindowWithCallback(
                         "title",
-                        "description",
-                        ('A'..'Z').map { alphabet -> ButtonWithCallback("$alphabet") { it.player.sendMessage("You clicked '$alphabet' !") } }
+                        "desciption",
+                        ('A'..'Z').map { alphabet ->
+                            ElementButton("$alphabet") to { event: PlayerFormRespondedEvent -> event.player.sendMessage("You clicked '$alphabet' !") }
+                        }
                 )
         )
     }

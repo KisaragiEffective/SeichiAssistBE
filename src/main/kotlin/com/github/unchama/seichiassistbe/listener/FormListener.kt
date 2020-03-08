@@ -3,15 +3,14 @@ package com.github.unchama.seichiassistbe.listener
 import cn.nukkit.event.EventHandler
 import cn.nukkit.event.Listener
 import cn.nukkit.event.player.PlayerFormRespondedEvent
-import cn.nukkit.form.response.FormResponseSimple
-import com.github.unchama.seichiassistbe.util.ButtonWithCallback
+import com.github.unchama.seichiassistbe.util.WindowWithCallbackResponse
 
+@Suppress("unused")
 object FormListener : Listener {
 
     @EventHandler
     fun onRespondForm(event: PlayerFormRespondedEvent) {
-        val button = (event.response as? FormResponseSimple)?.clickedButton as? ButtonWithCallback ?: return
-        button.onClick(event)
+        (event.response as? WindowWithCallbackResponse)?.onClick?.invoke(event) ?: return
     }
 
 }
