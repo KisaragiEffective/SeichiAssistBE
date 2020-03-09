@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  nukkit:
+    build: .
+    image: "ixilon/nukkit"
+    ports:
+      - "19132:19132/udp"
+    volumes:
+      - ./srv:/srv/nukkit
+    stdin_open: true
+    tty: true

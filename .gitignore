@@ -13,3 +13,5 @@
 # Gradle
 .gradle
 build
+
+/srv/
