@@ -4,6 +4,8 @@ import cn.nukkit.level.GameRule
 import cn.nukkit.plugin.PluginBase
 import com.github.unchama.seichiassistbe.listener.DebugListener
 import com.github.unchama.seichiassistbe.listener.FormListener
+import com.github.unchama.seichiassistbe.listener.NoticeListener
+
 
 @Suppress("unused")
 class SeichiAssistBE : PluginBase() {
@@ -13,7 +15,8 @@ class SeichiAssistBE : PluginBase() {
 
         setOf(
                 DebugListener,
-                FormListener
+                FormListener,
+                NoticeListener
         ).forEach { listener -> server.pluginManager.registerEvents(listener, this) }
     }
 
