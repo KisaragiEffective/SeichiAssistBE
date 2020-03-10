@@ -36,7 +36,7 @@ class WindowWithCallback(
         callback = if (wasClosed()) {
             {}
         } else {
-            data?.toIntOrNull()?.let { callbacks.getOrNull(it) } ?: return
+            data?.toIntOrNull()?.let { callbacks.getOrNull(it) } ?: {}
         }
     }
 }
