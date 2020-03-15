@@ -5,6 +5,7 @@ import cn.nukkit.plugin.PluginBase
 import com.github.unchama.seichiassistbe.listener.DebugListener
 import com.github.unchama.seichiassistbe.listener.FormListener
 import com.github.unchama.seichiassistbe.listener.NoticeListener
+import com.github.unchama.seichiassistbe.listener.PlayerFirstJoin
 
 
 @Suppress("unused")
@@ -16,7 +17,8 @@ class SeichiAssistBE : PluginBase() {
         setOf(
                 DebugListener,
                 FormListener,
-                NoticeListener
+                NoticeListener,
+                PlayerFirstJoin
         ).forEach { listener -> server.pluginManager.registerEvents(listener, this) }
     }
 
