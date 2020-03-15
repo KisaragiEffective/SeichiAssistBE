@@ -4,6 +4,7 @@ import cn.nukkit.block.BlockID
 import cn.nukkit.event.EventHandler
 import cn.nukkit.event.Listener
 import cn.nukkit.event.player.PlayerRespawnEvent
+import cn.nukkit.level.Position
 
 object PlayerFirstJoin : Listener {
     @EventHandler
@@ -19,5 +20,7 @@ object PlayerFirstJoin : Listener {
                 }
             }
         }
+        val pos = e.respawnPosition
+        e.respawnPosition = Position(pos.x, 65.0, pos.z, pos.level)
     }
 }
